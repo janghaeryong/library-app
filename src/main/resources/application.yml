@@ -1,0 +1,49 @@
+server:
+  port: 8083
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url : "jdbc:h2:mem:library;MODE=MariaDB;NON_KEYWORDS=USER"
+    username: "sa"
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: "jdbc:mariadb://localhost/library"
+    username: "root"
+    password: "1234"
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none  # 스프링이 시작할때 DB에 있는 테이블을 어떻게 처리할지  (테이블하고 객체하고 다를때 어떻게 할지)
+                      # create 기존 테이블이 있다면 삭제 후 다시 생성
+                      # create-drop : 스프링이 종료될때 테이블을 모두 제거
+                      # update 객체와 테이블이 다른 부분만 변경
+                      # validate 객체와 테이블이 동일한지 확인
+                      # none 별 다른 조치를 하지 않는다.
+    properties:
+      hibernate:
+        show_sql: true    # SQL 을 노출 할때 보기 좋게 꾸밀 것인가?
+        format_sql: true  # JPS 로 DB 에 SQL 전송 할때 노출 할 것인가?
+        dialect: org.hibernate.dialect.MariaDBDialect # 방언 사투리 (이 옵션으로 특정하면 조금씩 다른 SQL을 수정해준다.) org.hibernate.dialect.MySQL8Dialect
+
