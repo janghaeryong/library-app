@@ -6,7 +6,7 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url : "jdbc:h2:mem:library;MODE=MariaDB;NON_KEYWORDS=USER"
+    url : "jdbc:h2:mem:library;MODE=mysql;NON_KEYWORDS=USER"
     username: "sa"
     password: ""
     driver-class-name: org.h2.Driver
@@ -29,10 +29,11 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: "jdbc:mariadb://localhost/library"
+    url: "jdbc:mysql://localhost/library"
     username: "root"
-    password: "1234"
-    driver-class-name: org.mariadb.jdbc.Driver
+    password: "Wkdgofyd18!"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+      #org.mariadb.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: none  # 스프링이 시작할때 DB에 있는 테이블을 어떻게 처리할지  (테이블하고 객체하고 다를때 어떻게 할지)
@@ -45,5 +46,7 @@ spring:
       hibernate:
         show_sql: true    # SQL 을 노출 할때 보기 좋게 꾸밀 것인가?
         format_sql: true  # JPS 로 DB 에 SQL 전송 할때 노출 할 것인가?
-        dialect: org.hibernate.dialect.MariaDBDialect # 방언 사투리 (이 옵션으로 특정하면 조금씩 다른 SQL을 수정해준다.) org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        #org.hibernate.dialect.MariaDBDialect # 방언 사투리 (이 옵션으로 특정하면 조금씩 다른 SQL을 수정해준다.)
+        #org.hibernate.dialect.MySQL8Dialect
 
